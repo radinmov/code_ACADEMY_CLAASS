@@ -52,51 +52,55 @@ export default function Home() {
 
   return (
     <Style>
-      <input
-        className=""
-        onChange={(e) => setFile(e.target.files[0])}
-        type="file"
-      />
-      <button className="name" onClick={sendData}>
-        send images
-      </button>
-      {images.length > 0 &&
-        images.map((item, index) => {
-          return (
-            <div key={index}>
-              <Link to={`/account/${item.user_id}`}>{item.user}</Link>
-              <Link to={`/posts/${item.id}`}>{item.id}</Link>
-              <img
-                alt="img"
-                className="w-52 "
-                src={`http://192.168.100.6:3020${item.image.url}`}
-              />
-              <button onClick={() => deletData(item.id)}>delete</button>
-            </div>
-          );
-        })}
-      <input
-        type="text"
-        onChange={(e) => {
-          setDes(e);
-        }}
-      />
-      <p>public</p>
-      <input
-        type="radio"
-        name="visibility"
-        onChange={(e) => {
-          setVisi(1);
-        }}
-      />
-      <p>private</p>
-      <input
-        type="radio"
-        name="visibility"
-        onChange={(e) => {
-          setVisi(0);
-        }}
-      />
+      <div>
+        <input
+          className=""
+          onChange={(e) => setFile(e.target.files[0])}
+          type="file"
+        />
+        <button className="name" onClick={sendData}>
+          send images
+        </button>
+        <input
+          type="text"
+          onChange={(e) => {
+            setDes(e.target.value);
+          }}
+        />
+        <p>public</p>
+        <input
+          type="radio"
+          name="visibility"
+          onChange={(e) => {
+            setVisi(1);
+          }}
+        />
+        <p>private</p>
+        <input
+          type="radio"
+          name="visibility"
+          onChange={(e) => {
+            setVisi(0);
+          }}
+        />
+        {images.length > 0 &&
+          images.map((item, index) => {
+            return (
+              <div key={index}>
+                <Link to={`/account/${item.user_id}`}>{item.user}</Link>
+                <Link to={`/posts/${item.id}`}>{item.id}</Link>
+                <Link to={`/posts/${item.id}`}>
+                  <img
+                    alt="img"
+                    className="w-52 "
+                    src={`http://192.168.100.5:3020${item.image.url}`}
+                  />
+                </Link>
+                <button onClick={() => deletData(item.id)}>delete</button>
+              </div>
+            );
+          })}
+      </div>
     </Style>
   );
 }

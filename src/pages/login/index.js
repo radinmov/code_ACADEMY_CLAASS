@@ -12,7 +12,7 @@ export default function Login() {
       username: userName,
       password: pas,
     });
-    fetch("http://46.100.94.88:3020/auth/login", {
+    fetch("http://192.168.100.5:3020/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,11 +21,12 @@ export default function Login() {
     })
       .then((response) => response.json())
       .then((resualt) => {
+        console.log(resualt);
         let token = resualt.token;
         if (token) {
           localStorage.setItem("token", token);
           localStorage.setItem("username", resualt.user.username);
-          localStorage.setItem("userId", resualt.user.user_id);
+          localStorage.setItem("Id", resualt.user.id);
 
           navigate("/home");
         }
